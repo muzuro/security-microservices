@@ -1,0 +1,9 @@
+server:
+  port: 8087
+
+app:
+  security:
+    service:
+      token: ${SERVICE_TOKEN:defaulttokenvalue}
+    jwt:
+      secret: ${APP_JWT_SECRET:dZhxh0--Kq3XZD3UmV5LbXuZP3sUoJQMX03tFYJ1mws}

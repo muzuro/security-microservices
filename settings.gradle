@@ -1,0 +1,4 @@
+rootProject.name="security-microservices"
+
+include "account"
+include "notification"
