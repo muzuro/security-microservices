@@ -19,7 +19,7 @@ class DailyNotificationJob(
 
     private val logger = KotlinLogging.logger {  }
 
-    @Scheduled(fixedDelay = 10 * DateUtils.MILLIS_PER_DAY)
+    @Scheduled(fixedDelay = DateUtils.MILLIS_PER_DAY)
     fun process() {
         val headers = HttpHeaders()
         headers.set("Authorization", "Service $serviceToken")
@@ -32,5 +32,4 @@ class DailyNotificationJob(
             object : ParameterizedTypeReference<List<String>>() {})
         logger.info { "TODO: notify user: ${response.body}" }
     }
-
 }
