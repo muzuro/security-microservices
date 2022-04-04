@@ -1,4 +1,4 @@
-package com.mzr.sm
+package com.mzr.sm.security
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
@@ -12,7 +12,6 @@ import org.springframework.security.config.http.SessionCreationPolicy
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 class WebSecurityConfig : WebSecurityConfigurerAdapter() {
-    @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
         http
             .cors()
@@ -27,5 +26,4 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
             }
             .oauth2ResourceServer { obj: OAuth2ResourceServerConfigurer<HttpSecurity?> -> obj.jwt() }
     }
-
 }

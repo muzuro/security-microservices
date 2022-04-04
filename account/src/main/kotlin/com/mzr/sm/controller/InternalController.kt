@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/internal")
-class InternalController(
-    val userDetailsService: UserDetailsService,
-) {
+class InternalController() {
 
     private val logger = KotlinLogging.logger {  }
 
@@ -26,5 +24,4 @@ class InternalController(
     fun getUsers(): List<String> {
         return listOf("user@mail.com")
     }
-
 }

@@ -26,7 +26,6 @@ class WebSecurityConfig(
         builder.authenticationProvider(serviceAuthenticationProvider)
     }
 
-    @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
         http
             .addFilterAfter(

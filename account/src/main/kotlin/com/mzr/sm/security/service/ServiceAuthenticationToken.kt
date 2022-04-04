@@ -8,7 +8,6 @@ class ServiceAuthenticationToken(
     override fun getCredentials(): Any {
         return token
     }
-
     override fun getPrincipal(): Any {
         return token
     }

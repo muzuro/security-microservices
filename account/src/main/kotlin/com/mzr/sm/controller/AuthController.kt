@@ -27,18 +27,15 @@ class AuthController(
         @RequestParam username: String,
         @RequestParam password: String
     ): LoginResult {
-        val userDetails: UserDetails
-        userDetails = try {
+        val userDetails = try {
             userDetailsService.loadUserByUsername(username)
         } catch (e: UsernameNotFoundException) {
             throw ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found")
         }
         if (passwordEncoder.matches(password, userDetails.password)) {
-            val claims: MutableMap<String?, String?> = HashMap()
+            val claims: MutableMap<String, String> = HashMap()
             claims["username"] = username
-            val authorities = userDetails.authorities.stream()
-                .map { obj: GrantedAuthority -> obj.authority }
-                .collect(Collectors.joining(","))
+            val authorities = userDetails.authorities.joinToString { it.authority.toString() }
             claims["authorities"] = authorities
             claims["userId"] = 1.toString()
             val jwt = jwtHelper.createJwtForClaims(username, claims)

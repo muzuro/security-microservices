@@ -16,14 +16,11 @@ class ServiceAuthenticationProvider(
     private val serviceToken: String,
 ) : AuthenticationProvider {
 
-    @Throws(AuthenticationException::class)
     override fun authenticate(authentication: Authentication): Authentication {
         val name = authentication.name
         val password = authentication.credentials.toString()
         return if (isServiceTokenValid(authentication as ServiceAuthenticationToken)) {
-            // use the credentials
-            // and authenticate against the third-party system
-            UsernamePasswordAuthenticationToken(name, password, ArrayList())
+            UsernamePasswordAuthenticationToken(name, password, emptyList())
         } else {
             throw AuthenticationServiceException("Unknown service ${authentication.name}")
         }

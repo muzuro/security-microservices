@@ -1,4 +1,4 @@
-package com.mzr.sm
+package com.mzr.sm.security
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
@@ -14,7 +14,6 @@ class JwtConfiguration(
     @Value("\${app.security.jwt.secret}")
     private val jwtSecret: String
 ) {
-
     @Bean
     fun jwtDecoder(): JwtDecoder {
         val key = jwtSecret.toByteArray()

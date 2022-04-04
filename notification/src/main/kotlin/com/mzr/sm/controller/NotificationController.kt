@@ -12,16 +12,13 @@ import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.client.RestTemplate
 
-
-@CrossOrigin(origins = ["*"], maxAge = 3600)
 @RestController
 class NotificationController() {
 
     private val logger = KotlinLogging.logger {  }
 
     @PostMapping("/verifyEmail")
-    fun verifyEmail(@RequestHeader("Authorization") authHeader: String, authentication: Authentication) {
-
+    fun verifyEmail(@RequestHeader("Authorization") authHeader: String) {
         val headers = HttpHeaders()
         headers.set("Authorization", authHeader)
 
@@ -33,5 +30,4 @@ class NotificationController() {
             object : ParameterizedTypeReference<String>() {})
         logger.info { "TODO: sent verify email to ${response.body}" }
     }
-
 }
